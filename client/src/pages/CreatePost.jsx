@@ -15,8 +15,29 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    if(form.prompt && form.photo) {
+      setLoading(true);
+      try {
+        const response = await fetch('http://localhost:8080/api/v1/post', {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(form)
+        })
+        await response.json();
+        navigate('/');
+      } catch (error) {
+        alert(error)
+      } finally {
+        setLoading(false);
+      }
+    } else {
+      alert('Svp rentrez une image à génerer avant de vouloir la partager')
+    }
   }
 
   const handleChange = (e) => {
@@ -24,12 +45,32 @@ const CreatePost = () => {
   }
 
   const handleSurpriseMe = () => {
-    const randomPrompt = getRandomPrompt(form.prompt)
-    setForm({...form, prompt: randomPrompt})
-  }
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt });
+  };
 
-  const generateImage = () => {
+  const generateImage = async () => {
+    if(form.prompt) {
+      try {
+        setGeneratingImg(true)
+        const response = await fetch('http://localhost:8080/api/v1/dalle', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: form.prompt }), 
+        })
+        const data = await response.json();
 
+        setForm({...form, photo: `data:image/jpeg;base64,${data.photo}`})
+      } catch (error) {
+        alert(error);
+      } finally {
+        setGeneratingImg(false);
+      }
+    } else {
+      alert('veuillez remplir le champ !!')
+    }
   }
 
   return (
@@ -46,7 +87,7 @@ const CreatePost = () => {
             name="name"
             placeholder="John Doe"
             value={form.name}
-            handleSubmit={handleChange}
+            handleChange={handleChange}
           />
           <FormField 
             labelName="Génerer texte aléatoirement"
