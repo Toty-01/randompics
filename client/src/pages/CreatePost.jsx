@@ -76,10 +76,10 @@ const CreatePost = () => {
   return (
     <section className='max-w-4xl mx-auto'>
       <div>
-        <h1 className='font-extrabold text-[20px] text-[#222328]'>Créer ta propre image</h1>
+        <h1 className='font-extrabold text-[26px] text-[#222328]'>Créer ta propre image</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>Invente une image qui n'éxiste pas encore</p>
       </div>
-      <form action="" className='mt-16 max-w-3xl' onSubmit={handleSubmit}>
+      <form action="" className='mt-12 max-w-3xl' onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
           <FormField 
             labelName="Votre prénom"
@@ -100,8 +100,8 @@ const CreatePost = () => {
             isSurpriseMe
           />
           <div 
-            className="relative mt-3 bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg 
-          focus:ring-blue-500 focus:border-blue-500 w-64 p-3 h-64 flex justify-center items-center"
+            className="relative mt-3 mx-auto bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg 
+          focus:ring-blue-500 focus:border-blue-500 w-80 p-3 h-80 flex justify-center items-center"
           >
             {form.photo ? (
               <img 
@@ -133,7 +133,7 @@ const CreatePost = () => {
           </button>
         </div>
         <div className="mt-10">
-          <p className='mt-2 text-[#666e75] text-[14px]'>Une fois que vous avez créé une image vous pourrez la partager à la communauté</p>
+          <p className='mt-2 text-[#666e75] text-[14px] text-center'>Une fois que vous avez créé une image vous pourrez la partager à la communauté</p>
           <div className="flex justify-center">
           <button
             type='submit'

@@ -15,6 +15,8 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setSearchText] = useState('');
+  const [searchedResults, setSearchedResults] = useState(null);
+  const [searchTimeout, setSearchTimeOut] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -40,14 +42,36 @@ const Home = () => {
     fetchPosts()
   }, []);
 
+  const handleSearchChange = (e) => {
+    clearTimeout(searchTimeout)
+    setSearchText(e.target.value);
+    setSearchTimeOut(
+    setTimeout(() => {
+      const searchedResults = 
+      allPosts.filter((item) => 
+      item.name.toLowerCase().includes(searchText.toLowerCase()) 
+        || 
+      item.prompt.toLowerCase().includes(searchText.toLowerCase()));
+      setSearchedResults(searchedResults);
+    }, 500)
+    )
+  }
+
   return (
     <section className='max-w-7xl mx-auto'>
       <div className="">
-        <h1 className='font-extrabold text-[20px] text-[#222328]'>Créa Sion</h1>
+        <h1 className='font-extrabold text-[28px] text-center mb-8 text-[#222328]'>CréaTive</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>Parcourez une collection d'images visuellement époustouflantes générées automatiquements par une AI.</p>
       </div>
-      <div className="mt-16">
-        <FormField />
+      <div className="mt-10">
+        <FormField 
+          labelName="Rechercher un post :"
+          type="text"
+          name="text"
+          placeholder="Rechercher une image"
+          value={searchText}
+          handleChange={handleSearchChange}
+        />
       </div>
       <div className="mt-10">
         {loading ? (
@@ -64,7 +88,7 @@ const Home = () => {
             <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
               {searchText ? (
                 <RenderCards
-                  data={[]}
+                  data={searchedResults}
                   title="Aucun résultat trouvé .. Réessayez" 
                 />
               ) : (
