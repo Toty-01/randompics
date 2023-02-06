@@ -58,9 +58,9 @@ const Home = () => {
   }
 
   return (
-    <section className='max-w-7xl mx-auto'>
+    <section className='max-w-6xl mx-auto'>
       <div className="">
-        <h1 className='font-extrabold text-[28px] text-center mb-8 text-[#222328]'>CréaTive</h1>
+        <h1 className='rounded-md font-extrabold text-[35px] text-center p-5 mt-6 mb-14 bg-slate-400 text-white'>CréaTive</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>Parcourez une collection d'images visuellement époustouflantes générées automatiquements par une AI.</p>
       </div>
       <div className="mt-10">

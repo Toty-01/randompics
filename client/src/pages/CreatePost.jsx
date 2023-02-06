@@ -74,21 +74,22 @@ const CreatePost = () => {
   }
 
   return (
-    <section className='max-w-4xl mx-auto'>
+    <section className='max-w-4xl mx-auto text-center'>
       <div>
-        <h1 className='font-extrabold text-[26px] text-[#222328]'>Créer ta propre image</h1>
+        <h1 className='rounded-md font-extrabold text-[30px] sm:text-[40px] w-full text-center p-4 mt-6 mb-14 bg-slate-400 text-white'>Créer ta propre image</h1>
         <p className='mt-2 text-[#666e75] text-[16px] max-w[500px]'>Invente une image qui n'éxiste pas encore</p>
       </div>
-      <form action="" className='mt-12 max-w-3xl' onSubmit={handleSubmit}>
+      <form action="" className='mt-12 max-w-3xl mx-auto' onSubmit={handleSubmit}>
         <div className="flex flex-col gap-5">
           <FormField 
-            labelName="Votre prénom"
+            labelName="Nom"
             type='text'
             name="name"
             placeholder="John Doe"
             value={form.name}
             handleChange={handleChange}
           />
+          <p className=''>Ecris l'image que tu veux génerer ou génere une idée au hasard</p>
           <FormField 
             labelName="Génerer texte aléatoirement"
             type='text'
@@ -101,7 +102,7 @@ const CreatePost = () => {
           />
           <div 
             className="relative mt-3 mx-auto bg-gray-50 border border-gray-400 text-gray-900 text-sm rounded-lg 
-          focus:ring-blue-500 focus:border-blue-500 w-80 p-3 h-80 flex justify-center items-center"
+          focus:ring-blue-500 focus:border-blue-500 w-80 p-2 h-80 flex justify-center items-center"
           >
             {form.photo ? (
               <img 
@@ -129,7 +130,7 @@ const CreatePost = () => {
             onClick={generateImage}
             className="text-white bg-green-600 font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center hover:bg-green-800"
           >
-            {generatingImg ? '...génération en cours' : 'Créer une Image'}
+            { generatingImg ? '...génération en cours' : 'Créer une Image' }
           </button>
         </div>
         <div className="mt-10">
@@ -137,7 +138,7 @@ const CreatePost = () => {
           <div className="flex justify-center">
           <button
             type='submit'
-            className='mt-3 text-white bg-[#6469ff] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
+            className='mt-5 mb-5 text-white bg-[#6469ff] hover:bg-[#474ce7] font-medium rounded-md text-sm w-full sm:w-auto px-5 py-2.5 text-center'
           >
             Partager l'image
           </button>
