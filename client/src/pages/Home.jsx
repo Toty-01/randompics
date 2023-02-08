@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import {Loader, Card, FormField} from '../components'
+import "./style.css"
 
 const RenderCards = ({data, title}) => {
   if(data?.length > 0) {

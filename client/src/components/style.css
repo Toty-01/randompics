@@ -22,3 +22,8 @@
     font-size: 1.1rem;
   }
 }
+@media screen and (max-width: 600px) {
+  .modal-body {
+    margin: 2.5rem !important;
+  }
+}
